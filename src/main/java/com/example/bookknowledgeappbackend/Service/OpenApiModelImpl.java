@@ -10,6 +10,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.codec.multipart.FilePart;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -36,6 +38,8 @@ public class OpenApiModelImpl{
     @Value("${api.key2}")
     private String apiKey2;
     private static final String DOWNLOAD_DIR = new File(System.getProperty("user.dir"), "downloads").getAbsolutePath();
+    private String remoteUrl ="https://job-ai-model.onrender.com";
+    private String localHurl ="http://localhost:7000";
 
 
     @PostConstruct
@@ -43,7 +47,7 @@ public class OpenApiModelImpl{
         webClient = WebClient.builder()
                 .baseUrl("https://api.openai.com/v1")
                 .build();
-        privateWebClient = WebClient.builder().baseUrl("http://localhost:7000")
+        privateWebClient = WebClient.builder().baseUrl(remoteUrl)
                     .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(10 * 1024 * 1024)).build();
         grokWebClient = WebClient.builder()
                 .baseUrl("https://api.x.ai/v1")
@@ -227,5 +231,21 @@ public Mono<String> askGptWithVectorStore(String question, String vectorStoreId)
                     return "data:audio/wav;base64," + base64;
                 });
     }
+
+    @Scheduled(fixedRate = 1800000) // 30 minutes in milliseconds
+    public void deleteFile() {
+        File folder = new File(DOWNLOAD_DIR);
+        if (folder.exists() && folder.isDirectory()) {
+            File[] files = folder.listFiles();
+            if (files != null) {
+                for (File file : files) {
+                    if (file.isFile()) {
+                        file.delete();
+                    }
+                }
+            }
+        }
+    }
+
 
 }

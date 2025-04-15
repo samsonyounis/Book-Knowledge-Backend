@@ -39,14 +39,14 @@ public class BookQaController {
 
             return pdf.transferTo(tempPdfPath)
                     .then(openApiModel.uploadFileToOpenAI(tempPdfPath.toFile())
-                            .doOnNext(fileId -> System.out.println(" File uploaded, OpenAI File ID: {}"+ fileId))
+//                            .doOnNext(fileId -> System.out.println(" File uploaded, OpenAI File ID: {}"+ fileId))
                     )
                     .flatMap(fileId -> openApiModel.transcribeAudio(audioPartMono)
-                            .doOnNext(text -> System.out.println(" Transcribed Question Text: {}"+ text))
+//                            .doOnNext(text -> System.out.println(" Transcribed Question Text: {}"+ text))
                             .flatMap(questionText -> openApiModel.getDragonAnswer(fileId, questionText)
-                                    .doOnNext(answer -> System.out.println(" GPT Answer: {}"+ answer))
+//                                    .doOnNext(answer -> System.out.println(" GPT Answer: {}"+ answer))
                                     .flatMap(answer -> openApiModel.synthesizeAudio(answer)
-                                            .doOnNext(audioUrl -> System.out.println("Synthesized Audio URL: {}"+ audioUrl))
+//                                            .doOnNext(audioUrl -> System.out.println("Synthesized Audio URL: {}"+ audioUrl))
                                             .map(audioUrl -> {
                                                 Map<String, Object> response = new HashMap<>();
                                                 response.put("answer", answer);

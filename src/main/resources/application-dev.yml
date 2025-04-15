@@ -27,5 +27,5 @@ server:
       timeout: 120s
 
 api:
-  key: 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
-  key2: xai-pBi39GtU4JTGmBW1fiqcw33hTs3A8EbaCJHL8hLQfKMhLcrjHWrVjbvezJfmVQHsHSP8Di7w0JkT10xU
+    key: ${API_KEY}
+    key2: ${API_KEY2}
