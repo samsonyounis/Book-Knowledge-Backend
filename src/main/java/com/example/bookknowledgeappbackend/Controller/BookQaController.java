@@ -24,8 +24,7 @@ import java.util.UUID;
 @CrossOrigin("*")
 public class BookQaController {
 
-    @Autowired
-    private OpenApiModelImpl openApiModel;
+    private final OpenApiModelImpl openApiModel;
     private static final String DOWNLOAD_DIR = new File(System.getProperty("user.dir"), "downloads").getAbsolutePath();
 
 
