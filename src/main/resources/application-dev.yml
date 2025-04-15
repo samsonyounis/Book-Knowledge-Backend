@@ -26,6 +26,9 @@ server:
     session:
       timeout: 120s
 
+#api:
+#    key: ${API_KEY}
+#    key2: ${API_KEY2}
 api:
-    key: ${API_KEY}
-    key2: ${API_KEY2}
+  key: ${API_KEY}
+  key2: ${API_KEY2}
