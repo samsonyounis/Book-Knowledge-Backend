@@ -34,6 +34,10 @@ public class BookQaController {
             @RequestPart("audio") Mono<FilePart> audioPartMono
     ) {
         return pdfPartMono.flatMap(pdf -> {
+            File dir = new File(DOWNLOAD_DIR);
+            if (!dir.exists()) {
+                dir.mkdirs(); // Create the directory if it doesn't exist
+            }
             Path tempPdfPath = Paths.get(DOWNLOAD_DIR, UUID.randomUUID() + "-" + pdf.filename());
 
             return pdf.transferTo(tempPdfPath)
