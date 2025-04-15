@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: book-knowldge-app
+
+  threads:
+    virtual:
+      enabled: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: samixsolutions247@gmail.com
+    password: kkof xjpk iaam kkeh
+    test-connection: true
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+server:
+  reactive:
+    session:
+      timeout: 120s
+  webflux:
+    session:
+      timeout: 120s
+
+api:
+  key: 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
+  key2: xai-pBi39GtU4JTGmBW1fiqcw33hTs3A8EbaCJHL8hLQfKMhLcrjHWrVjbvezJfmVQHsHSP8Di7w0JkT10xU
