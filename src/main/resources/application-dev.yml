@@ -30,5 +30,5 @@ server:
 #    key: ${API_KEY}
 #    key2: ${API_KEY2}
 api:
-  key: ${API_KEY}
-  key2: ${API_KEY2}
+  key: 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
+  key2: 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

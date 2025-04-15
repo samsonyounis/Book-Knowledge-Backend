@@ -5,6 +5,7 @@ WORKDIR /app
 COPY . /app
 
 # Build the application and skip tests to speed up the process
+RUN mkdir -p /app/downloads && chmod 777 /app/downloads
 RUN mvn clean package -DskipTests
 
 # Use a lightweight JDK image to run the app
