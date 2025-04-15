@@ -20,11 +20,11 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/v1")
 @Slf4j
-@RequiredArgsConstructor
 @CrossOrigin("*")
 public class BookQaController {
 
-    private final OpenApiModelImpl openApiModel;
+    @Autowired
+    private OpenApiModelImpl openApiModel;
     private static final String DOWNLOAD_DIR = new File(System.getProperty("user.dir"), "downloads").getAbsolutePath();
 
 
