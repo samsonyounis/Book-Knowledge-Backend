@@ -121,7 +121,7 @@ public Mono<String> askGptWithVectorStore(String question, String vectorStoreId)
         payload.put("question",promptText);
 
         return privateWebClient.post()
-                .uri("/ask")
+                .uri("/ask/")
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + apiKey)
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(payload)
@@ -219,7 +219,7 @@ public Mono<String> askGptWithVectorStore(String question, String vectorStoreId)
     public Mono<String> synthesizeAudio(String text) {
         return privateWebClient
                 .post()
-                .uri("/api/tts")
+                .uri("/api/tts/")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_OCTET_STREAM)
                 .bodyValue(Map.of("text", text))
