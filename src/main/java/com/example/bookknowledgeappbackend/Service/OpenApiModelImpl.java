@@ -116,9 +116,10 @@ public Mono<String> askGptWithVectorStore(String question, String vectorStoreId)
             .map(json -> json.path("choices").get(0).path("message").path("content").asText());
 }
     public Mono<String> getDragonAnswer(String fileId, String promptText) {
+        String newPrompt = promptText+".\n just give the exact answer without extra information or expalanation or citing source";
         HashMap<String, String> payload = new HashMap<>();
         payload.put("file_id",fileId);
-        payload.put("question",promptText);
+        payload.put("question",newPrompt);
 
         return privateWebClient.post()
                 .uri("/ask/")
