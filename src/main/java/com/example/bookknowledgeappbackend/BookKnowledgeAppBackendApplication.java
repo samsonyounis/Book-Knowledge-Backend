@@ -13,7 +13,6 @@ public class BookKnowledgeAppBackendApplication {
     public WebClient webClient() {
         return WebClient.builder().build();
     }
-
     public static void main(String[] args) {
         SpringApplication.run(BookKnowledgeAppBackendApplication.class, args);
     }
