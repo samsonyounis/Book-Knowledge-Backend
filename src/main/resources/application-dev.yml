@@ -18,13 +18,13 @@ spring:
           starttls:
             enable: true
             required: true
-server:
-  reactive:
-    session:
-      timeout: 120s
-  webflux:
-    session:
-      timeout: 120s
+#server:
+#  reactive:
+#    session:
+#      timeout: 120s
+#  webflux:
+#    session:
+#      timeout: 120s
 
 #api:
 #    key: ${API_KEY}
