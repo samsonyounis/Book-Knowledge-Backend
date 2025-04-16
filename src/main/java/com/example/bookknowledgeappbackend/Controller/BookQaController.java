@@ -51,8 +51,9 @@ public class BookQaController {
                                     .flatMap(answer -> openApiModel.synthesizeAudio(answer)
 //                                            .doOnNext(audioUrl -> System.out.println("Synthesized Audio URL: {}"+ audioUrl))
                                             .map(audioUrl -> {
+                                                String cleanedAnswer = answer.replaceAll("[^a-zA-Z0-9\\s]", "");
                                                 Map<String, Object> response = new HashMap<>();
-                                                response.put("answer", answer);
+                                                response.put("answer", cleanedAnswer);
                                                 response.put("ttsAudio", audioUrl);
                                                 return ResponseEntity.ok(response);
                                             })
