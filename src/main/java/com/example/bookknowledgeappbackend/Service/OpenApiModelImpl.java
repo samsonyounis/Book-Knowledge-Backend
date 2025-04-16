@@ -46,7 +46,7 @@ public class OpenApiModelImpl{
     public void init() {
         webClient = WebClient.builder()
                 .baseUrl("https://api.openai.com/v1")
-                .build();
+                .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(10 * 1024 * 1024)).build();
         privateWebClient = WebClient.builder().baseUrl(remoteUrl)
                     .codecs(configurer -> configurer.defaultCodecs().maxInMemorySize(10 * 1024 * 1024)).build();
         grokWebClient = WebClient.builder()
